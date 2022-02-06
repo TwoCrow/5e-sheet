@@ -2195,7 +2195,50 @@
 										<input type="text" name="attr_class_resource_max" title="@{class_resource_max}">
 									</div>
 								</div>
-                                <div class="sheet-container-panel sheet-pc-resources">
+								<div class="sheet-container-panel sheet-pc-effects">
+									<div class="sheet-container-header">Effects & Conditions</div>
+									<div class="sheet-container-body">
+										<div class="sheet-container-body-header">
+											<span></span>
+											<span>Description</span>
+										</div>
+										<fieldset class="repeating_effects-conditions">
+											<div class="sheet-fieldset-item">
+												<div class="sheet-checkbox-cog">
+													<input type="checkbox" name="attr_options-flag" checked="checked"><span></span>
+													<span class="sheet-toggle-icon"></span>
+												</div>
+												<input type="checkbox" name="attr_options-flag" checked="checked" class="sheet-toggle" hidden>
+												<div class="sheet-toggle-checked">
+													<div class="sheet-form">
+														<div class="sheet-form-header">Edit Effect</div>
+														<div class="sheet-form-body">
+															<div class="sheet-form-group">
+																<input type="text" name="attr_description">
+															</div>
+															<div class="sheet-form-group">
+																<label class="sheet-form-checkbox">
+																	<input type="checkbox" name="attr_active" value="1" checked="checked">
+																	<span>Active</span>
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="sheet-toggle-unchecked">
+													<div class="sheet-pc-effect">
+														<div class="sheet-checkbox-image">
+															<input type="checkbox" name="attr_active" value="1" checked="checked">
+															<span></span>
+														</div>
+														<span name="attr_description"></span>
+													</div>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+                                <!-- <div class="sheet-container-panel sheet-pc-resources">
 									<div class="sheet-container-header">Resources</div>
 									<div class="sheet-container-body">
 										<fieldset class="repeating_resource">
@@ -2239,7 +2282,7 @@
 											</div>
 										</fieldset>
 									</div>
-								</div>
+								</div> -->
 								<div class="sheet-container-panel sheet-pc-attacks">
 									<div class="sheet-container-header">Attacks & Spellcasting</div>
 									<div class="sheet-container-body">
@@ -2699,7 +2742,52 @@
 											</ul>
 										</div>
 									</div>
-									<div class="sheet-container-panel sheet-pc-effects">
+									<div class="sheet-container-panel sheet-pc-resources">
+										<div class="sheet-container-header">Resources</div>
+										<div class="sheet-container-body">
+											<fieldset class="repeating_resource">
+												<div class="sheet-fieldset-item sheet-fieldset-item-resource">
+													<div class="sheet-checkbox-cog">
+														<input type="checkbox" name="attr_options-flag" checked="checked"><span></span>
+														<span class="sheet-toggle-icon"></span>
+													</div>
+													<input type="checkbox" name="attr_options-flag" checked="checked" hidden class="sheet-toggle">
+													<div class="sheet-toggle-checked">
+														<div class="sheet-form">
+															<div class="sheet-form-header"></div>
+															<div class="sheet-form-body">
+																<div class="sheet-form-group">
+																	<label>Name:</label>
+																	<input type="text" name="attr_resourcename">
+																</div>
+																<div class="sheet-form-group">
+																	<label>Amount:</label>
+																	<input type="number" min="0" max="1000" step="1" value="0" name="attr_resourceamount">
+																	<label>Max:</label>
+																	<input type="number" min="0" max="1000" step="1" value="0" name="attr_resourcemax">
+																</div>
+																<div class="sheet-form-group">
+																	<label>Recharge:</label>
+																	<input type="radio" name="recharge" id="shortRest">
+																	<label for="shortRest">Short Rest</label>
+																	<input type="radio" name="recharge" value="longRest">
+																	<label for="longRest">Long Rest</label>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="sheet-toggle-unchecked">
+														<div class="sheet-pc-resource">
+															<span name="attr_resourcename"></span>
+															<span name="attr_resourceamount"></span>
+															<span name="attr_resourcemax"></span>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<!-- <div class="sheet-container-panel sheet-pc-effects">
 										<div class="sheet-container-header">Effects & Conditions</div>
 										<div class="sheet-container-body">
 											<div class="sheet-container-body-header">
@@ -2741,7 +2829,7 @@
 												</div>
 											</fieldset>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

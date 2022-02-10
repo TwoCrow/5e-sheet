@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="sheet-darkerdungeons">
 	<input class="monster_confirm_flag" type="hidden" name="attr_monster_confirm_flag">
 	<div class="licensecontainer compendium-drop-target monsters">
@@ -2702,42 +2703,29 @@
 										<div class="sheet-container-body">
 											<fieldset class="repeating_resource">
 												<div class="sheet-fieldset-item sheet-fieldset-item-resource">
-													<div class="sheet-checkbox-cog">
-														<input type="checkbox" name="attr_options-flag" checked="checked"><span></span>
-														<span class="sheet-toggle-icon"></span>
-													</div>
-													<input type="checkbox" name="attr_options-flag" checked="checked" hidden class="sheet-toggle">
-													<div class="sheet-toggle-checked">
-														<div class="sheet-form">
-															<div class="sheet-form-header"></div>
-															<div class="sheet-form-body">
-																<div class="sheet-form-group">
-																	<label>Name:</label>
-																	<input type="text" name="attr_resourcename">
-																</div>
-																<div class="sheet-form-group">
-																	<label>Amount:</label>
-																	<input type="number" name="attr_resourceamount">
-																	<label>Max:</label>
-																	<input type="number" name="attr_resourcemax">
-																</div>
-																<div class="sheet-form-group">
-																	<label>Recharge:</label>
-																	<input type="radio" name="recharge" id="shortRest">
-																	<label for="shortRest">Short Rest</label>
-																	<input type="radio" name="recharge" value="longRest">
-																	<label for="longRest">Long Rest</label>
-																</div>
+													<div class="sheet-form">
+														<div class="sheet-form-header"></div>
+														<div class="sheet-form-body">
+															<div class="sheet-form-group">
+																<label>Name:</label>
+																<input type="text" name="attr_resourcename">
+															</div>
+															<div class="sheet-form-group">
+																<label>Amount:</label>
+																<input type="number" name="attr_resourceamount">
+																<label>Max:</label>
+																<input type="number" name="attr_resourcemax">
+															</div>
+															<div class="sheet-form-group">
+																<label>Recharge:</label>
+																<input type="radio" name="recharge" id="shortRest">
+																<label for="shortRest">Short Rest</label>
+																<input type="radio" name="recharge" value="longRest">
+																<label for="longRest">Long Rest</label>
 															</div>
 														</div>
 													</div>
-													<div class="sheet-toggle-unchecked">
-														<div class="sheet-pc-resource">
-															<span name="attr_resourcename"></span>
-															<span name="attr_resourceamount"></span>
-															<span name="attr_resourcemax"></span>
-														</div>
-													</div>
+												</div>
 												</div>
 											</fieldset>
 										</div>
@@ -3104,7 +3092,11 @@
 										<fieldset class="repeating_traits">
 											<div class="sheet-fieldset-item">
 												<div class="sheet-checkbox-cog">
-													<input type="checkbox" name="attr_options-flag" checked="checked">
+													<input type="checkbox" name="attr_options-flag" title="Edit" checked="checked">
+													<span class="sheet-toggle-icon"></span>
+												</div>
+												<div class="sheet-form-checkbox-special">
+													<input type="checkbox" name="attr_hide_details" title="Hide Details" value="1" checked="checked">
 													<span class="sheet-toggle-icon"></span>
 												</div>
 												<input type="checkbox" name="attr_options-flag" checked="checked" class="sheet-toggle" hidden>
@@ -3133,34 +3125,27 @@
 															<div class="sheet-form-group">
 																<textarea name="attr_description"></textarea>
 															</div>
-															<div class="sheet-form-group">
-																<label class="sheet-form-checkbox">
-																	<input type="checkbox" name="attr_hide_details" value="1">
-																	<span>Hide Details</span>
-																</label>
-															</div>
 														</div>
 													</div>
 												</div>
 												<div class="sheet-toggle-unchecked">
 													<div class="sheet-pc-feature">
-														<button type="roll" name="roll_output" value="@{wtype}&{template:traits} @{charname_output} {{name=@{name}}} {{source=@{source}: @{source_type}}} {{description=@{description}}}">
-															<div class="sheet-pc-feature-name">
-																<span name="attr_name"></span>
+														<div class="sheet-pc-feature-name">
+															<button title="Speak" type="roll" class="show" name="roll_output" value="@{wtype}&{template:traits} @{charname_output} {{name=@{name}}} {{source=@{source}: @{source_type}}} {{description=@{description}}}">
+															<span name="attr_name"></span>
+														</div>
+														<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+														<div class="sheet-pc-feature-details">
+															<div>
+																<span style="font-size: 12px; font-style: italic; text-align: center; color:gray; text-align: center;" name="attr_source"></span>
+																<span> (</span>
+																<span style="font-size: 12px; font-style: italic; text-align: center; color:gray; text-align: center;" name="attr_source_type"></span>
+																<span>)</span>
 															</div>
-															<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
-															<div class="sheet-pc-feature-details">
-																<div>
-																	<span style="font-size: 12px; font-style: italic; text-align: center;" name="attr_source"></span>
-																	<span> (</span>
-																	<span style="font-size: 12px; font-style: italic; text-align: center;" name="attr_source_type"></span>
-																	<span>)</span>
-																</div>
-																<div>
-																	<span style="font-size: 14px; display: block; text-align: left; white-space: pre-wrap;" name="attr_description"></span>
-																</div>
+															<div>
+																<span style="font-size: 12px; display: block; text-align: left; white-space: pre-wrap;" name="attr_description"></span>
 															</div>
-														</button>
+														</div>
 													</div>
 												</div>
 											</div>

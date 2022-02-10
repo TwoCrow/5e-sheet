@@ -665,6 +665,49 @@
         text-transform: uppercase; }
       .charsheet .sheet-darkerdungeons .sheet-form .sheet-form-fieldset .sheet-form-fieldset-body {
         padding: 5px; }
+    .sheet-form-checkbox-special:hover span {
+      color: white;
+      opacity: 1;
+    }
+    .sheet-form-checkbox-special {
+      display: inline-block;
+      height: 18px;
+      position: absolute;
+      left: 0;
+      width: 18px;}
+      .sheet-form-checkbox-special input {
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+      }
+      .sheet-form-checkbox-special input:checked ~ span {
+        border: none;
+        color: inherit;
+        opacity: .25; }
+        .sheet-form-checkbox-special input:checked ~ span::before {
+          color: white; }
+            .sheet-form-checkbox-special:hover input:checked ~ span {
+              opacity: 1; }
+              .sheet-form-checkbox-special span {
+                align-items: center;
+                border-radius: 50%;
+                box-sizing: border-box;
+                color: #cccccc;
+                display: flex;
+                font-family: 'Pictos';
+                font-size: 13px;
+                height: 100%;
+                justify-content: center;
+                left: 0;
+                opacity: .25;
+                position: absolute;
+                top: 0;
+                width: 100%; }
+                .sheet-form-checkbox-special span::before {
+                  content: 'l'; }
     .charsheet .sheet-darkerdungeons .sheet-form .sheet-form-checkbox {
       cursor: pointer;
       display: flex; }
@@ -3286,3 +3329,6 @@
     display: none !important; }
   .charsheet .sheet-darkerdungeons .sheet-field-untoggle[value="1"] + * {
     display: none !important; }
+  .charsheet button[type="roll"].sheet-myrol.sheet-show span::before {
+    content: "w";
+  }

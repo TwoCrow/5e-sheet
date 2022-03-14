@@ -319,18 +319,12 @@
 								<div class="sheet-form-group">
 									<label>Roll Queries</label>
 									<select name="attr_rtype">
-										<option value="{{always=1}} {{r2=[[@{d20}">Always Roll Advantage</option>
 										<option value="@{advantagetoggle}">Advantage Toggle</option>
-										<option value="{{query=1}} ?{Advantage?|Normal Roll,&#123&#123normal=1&#125&#125 &#123&#123r2=[[0d20|Advantage,&#123&#123advantage=1&#125&#125 &#123&#123r2=[[@{d20}|Disadvantage,&#123&#123disadvantage=1&#125&#125 &#123&#123r2=[[@{d20}}">Query Advantage</option>
-										<option value="{{normal=1}} {{r2=[[0d20">Never Roll Advantage</option>
 									</select>
 								</div>
 								<div class="sheet-form-group">
 									<label>Whisper Rolls to GM</label>
 									<select name="attr_wtype">
-										<option value="">Never Whisper Rolls</option>
-										<option value="@{whispertoggle}">Whisper Toggle</option>
-										<option value="?{Whisper?|Public Roll,|Whisper Roll,/w gm }">Query Whisper</option>
 										<option value="/w gm ">Always Whisper Rolls</option>
 									</select>
 								</div>
@@ -6218,7 +6212,7 @@
 													<label>Roll Queries:</label>
 													<select name="attr_rtype" title="@{rtype}">
 														<option value="{{always=1}} {{r2=[[@{d20}">Always Roll Advantage</option>
-														<option value="@{advantagetoggle}">Advantage Toggle</option>
+														<option value="@{advantagetoggle}" selected>Advantage Toggle</option>
 														<option value="{{query=1}} ?{Advantage?|Normal Roll,&#123&#123normal=1&#125&#125 &#123&#123r2=[[0d20|Advantage,&#123&#123advantage=1&#125&#125 &#123&#123r2=[[@{d20}|Disadvantage,&#123&#123disadvantage=1&#125&#125 &#123&#123r2=[[@{d20}}">Query Advantage</option>
 														<option value="{{normal=1}} {{r2=[[0d20">Never Roll Advantage</option>
 													</select>

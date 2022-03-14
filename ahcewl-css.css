@@ -3210,7 +3210,10 @@
     justify-content: flex-end;
     margin-bottom: -18px;
     height: 18px; }
-  .charsheet .sheet-darkerdungeons .sheet-section-roll-advantage,
+  .charsheet .sheet-darkerdungeons .sheet-section-roll-advantage {
+    display: flex;
+    margin-bottom: 10px;
+  }
   .charsheet .sheet-darkerdungeons .sheet-section-roll-whisper {
     display: none; }
     .charsheet .sheet-darkerdungeons .sheet-section-roll-advantage label,

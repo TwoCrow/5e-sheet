@@ -27,6 +27,10 @@
       padding: 0;
       font-size: inherit;
       font-weight: inherit; }
+  button[type=roll].sheet-roll-hit-dice::before {
+    font-family: 'dicefontd20';
+    content: '0 ';
+  }
   .charsheet .sheet-darkerdungeons button[type=roll] {
     color: inherit;
     font-size: inherit;
@@ -284,7 +288,7 @@
         cursor: pointer;
         height: 100%; }
     .charsheet .sheet-darkerdungeons .sheet-container-box .sheet-container-footer {
-      color: #bab8b8;
+      color: black;
       font-size: 8px;
       font-weight: bold;
       line-height: 10px;
@@ -1276,11 +1280,9 @@
     margin: 0;
     display: grid;
     grid-template-columns: 50% auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto;
     grid-template-areas:
     "stats actions"
-    "traits actions"
-    "reactions actions"
     "legendaries legendaries"
   }
 
@@ -1304,32 +1306,6 @@
     grid-area: legendaries;
   }
 
-  .hit-dice-layout {
-    grid-area: hit-dice;
-    margin: 0;
-    display: grid;
-    max-height: 65px; 
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-template-areas: "d6-hit d8-hit" "d10-hit d12-hit";
-  }
-
-  .d6-hit-dice {
-    grid-area: d6-hit;
-  }
-
-  .d8-hit-dice {
-    grid-area: d8-hit;
-  }
-
-  .d10-hit-dice {
-    grid-area: d10-hit;
-  }
-
-  .d12-hit-dice {
-    grid-area: d12-hit;
-  }
-  
   .charsheet .sheet-darkerdungeons .sheet-section-npc-display .sheet-npc-header button {
     background: none;
     border: 0;
@@ -2116,14 +2092,16 @@
     grid-area: health;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    grid-template-areas: "hp-max hp hp health wounds wounds"
-   "hit-dice hit-dice death health wounds wounds";
+    grid-template-areas:
+    "hp hp hit-dice hit-dice wounds wounds"
+   "hp-max death hit-dice hit-dice wounds wounds";
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 65px auto; }
+    grid-template-rows: 50% auto; }
     .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-max {
       grid-area: hp-max; }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-max .sheet-container-body {
-        padding-top: 0; }
+        padding-top: 0;
+        justify-content: center; }
     .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-current {
       grid-area: hp; }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-current .sheet-container-body {
@@ -2132,56 +2110,55 @@
         .health-input-value {
             display: block;
             border: none;
-            min-width: 0;
             text-align: center;
-            max-height: 30px;
         }
         .current-hit-dice {
             display: block;
             border: none;
             min-width: 0;
             text-align: center;
-            max-height: 30px;
         }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-current .sheet-container-footer {
         display: flex;
         padding-left: 10px;
-        padding-right: 10px; 
-        padding-top: 10px}
+        padding-right: 10px;
+        padding-bottom: 10px; }
         .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hp-current .sheet-container-footer span {
           flex-grow: 1;
           text-align: center;
           width: 100%; }
-    .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice {
-      grid-area: hit-dice;
-      max-height: 65px; }
-      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-container-body {
-        display: flex;
-        flex-direction: row;
-        padding-top: 0; }
-        .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-container-body span {
-          align-items: center;
-          color: #dddddd;
-          display: flex;
-          font-size: 24px;
-          justify-content: center; }
-      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-container-footer {
-        display: flex;
-        padding-left: 10px;
-        padding-right: 10px; }
-        .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-container-footer span {
-          flex-grow: 1;
-          text-align: center;
-          width: 100%; }
+.charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice {
+    grid-area: hit-dice; }
+    .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-container-body-header span:first-of-type {
+      width: 15px;
+      flex-shrink: 0; }
+    .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-pc-hit-dice {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      padding-right: 20px; }
+      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-pc-hit-dice > span {
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-pc-hit-dice .sheet-checkbox-image {
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        flex-shrink: 0; }
+        .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-hit-dice .sheet-pc-hit-dice .sheet-checkbox-image span {
+          padding: 1px; }
     .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death {
-      grid-area: death;
-      max-height: 65px; }
+      grid-area: death; }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death .sheet-container-body {
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center; }
-      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death .sheet-death-save-success,
+      .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death .sheet-death-save-success {
+        margin-bottom: 10px;
+        display: flex;
+      }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death .sheet-death-save-fail {
         display: flex; }
         .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-core .sheet-container-well-health .sheet-pc-death .sheet-death-save-success > span,

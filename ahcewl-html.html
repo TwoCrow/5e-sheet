@@ -307,6 +307,10 @@
 							<label>Legendary Actions</label>
 							<input type="text" name="attr_npc_legendary_actions" value="0">
 						</div>
+						<div class="sheet-form-group">
+							<label>Legendary Actions</label>
+							<input type="text" name="attr_npc_legendary_actions_max" value="0">
+						</div>
 						<div class="sheet-form-fieldset">
 							<div class="sheet-form-fieldset-header">General Options</div>
 							<div class="sheet-form-fieldset-body">
@@ -624,46 +628,88 @@
 								<span name="attr_npc_xp" class="sheet-display-brackets-xp"></span>
 							</div>
 						</div>
-					</div>
-					<div class="sheet-container-panel sheet-npc-traits npc-traits">
-						<div class="sheet-container-header">Traits</div>
-						<div class="sheet-container-body">
-							<fieldset class="repeating_npctrait">
-								<div class="sheet-fieldset-item sheet-fieldset-item-npctrait">
-									<div class="sheet-checkbox-cog">
-										<input type="checkbox" name="attr_npc_options-flag" checked="checked" value="on">
-										<span class="sheet-toggle-icon"></span>
-									</div>
-									<input type="checkbox" name="attr_npc_options-flag" checked="checked" class="sheet-toggle" hidden>
-									<div class="sheet-toggle-checked">
-										<div class="sheet-form">
-											<div class="sheet-form-header">Edit Trait</div>
-											<div class="sheet-form-body">
-												<div class="sheet-form-group">
-													<label>Name:</label>
-													<input type="text" name="attr_name">
+						<div class="sheet-container-panel sheet-npc-traits npc-traits">
+							<div class="sheet-container-header">Traits</div>
+							<div class="sheet-container-body">
+								<fieldset class="repeating_npctrait">
+									<div class="sheet-fieldset-item sheet-fieldset-item-npctrait">
+										<div class="sheet-checkbox-cog">
+											<input type="checkbox" name="attr_npc_options-flag" checked="checked">
+											<span class="sheet-toggle-icon"></span>
+										</div>
+										<input type="checkbox" name="attr_npc_options-flag" checked="checked" class="sheet-toggle" hidden>
+										<div class="sheet-toggle-checked">
+											<div class="sheet-form">
+												<div class="sheet-form-header">Edit Trait</div>
+												<div class="sheet-form-body">
+													<div class="sheet-form-group">
+														<label>Name:</label>
+														<input type="text" name="attr_name">
+													</div>
+													<div class="sheet-form-group">
+														<label>Description:</label>
+														<textarea name="attr_desc"></textarea>
+													</div>
 												</div>
-												<div class="sheet-form-group">
-													<label>Description:</label>
-													<textarea name="attr_desc"></textarea>
+											</div>
+										</div>
+										<div class="sheet-toggle-unchecked">
+											<div class="sheet-npc-trait">
+												<div class="sheet-npc-trait-name">
+													<span name="attr_name"></span>
+												</div>
+												<div class="sheet-npc-trait-desc">
+													<span name="attr_desc"></span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="sheet-toggle-unchecked">
-										<div class="sheet-npc-trait">
-											<div class="sheet-npc-trait-name">
-												<span name="attr_name"></span>
-											</div>
-											<div class="sheet-npc-trait-desc">
-												<span name="attr_desc"></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</fieldset>
+								</fieldset>
+							</div>
 						</div>
-					</div>			
+						<input type="hidden" name="attr_npcreactionsflag" value="0" class="sheet-field-toggle">
+						<div class="sheet-container-panel sheet-npc-reactions npc-reactions">
+							<div class="sheet-container-header">Reactions</div>
+							<div class="sheet-container-body">
+								<fieldset class="repeating_npcreaction">
+									<div class="sheet-fieldset-item sheet-fieldset-item-npcreaction">
+										<div class="sheet-checkbox-cog">
+											<input type="checkbox" name="attr_npc_options-flag" checked="checked" value="on">
+											<span class="sheet-toggle-icon"></span>
+										</div>
+										<input type="checkbox" name="attr_npc_options-flag" checked="checked" class="sheet-toggle" hidden>
+										<div class="sheet-toggle-checked">
+											<div class="sheet-form">
+												<div class="sheet-form-header">Edit Reaction</div>
+												<div class="sheet-form-body">
+													<div class="sheet-form-group">
+														<label>Name:</label>
+														<input type="text" name="attr_name">
+													</div>
+													<div class="sheet-form-group">
+														<label>Description:</label>
+														<textarea name="attr_desc"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="sheet-toggle-unchecked">
+											<div class="sheet-npc-reaction">
+												<button type="roll" name="roll_npc_action" value="@{wtype}&{template:npcaction} @{npc_name_flag} {{rname=@{name}}} {{description=@{desc}}} @{charname_output}" class="sheet-fieldset-item-npcaction-checked-roll sheet-btn-text">
+													<div class="sheet-npc-reaction-name">
+														<span name="attr_name"></span>
+													</div>
+													<div class="sheet-npc-reaction-description">
+														<span name="attr_desc"></span>
+													</div>
+												</button>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>		
 					<input type="hidden" name="attr_dflag" value="pick">
 					<div class="sheet-container-panel sheet-npc-actions npc-actions">
 						<div class="sheet-container-header">Actions</div>
@@ -762,48 +808,6 @@
 											<input type="hidden" name="attr_rollbase">
 											<button type="roll" name="roll_npc_dmg" value="@{wtype}&{template:npcdmg} @{damage_flag} {{dmg1=[[@{attack_damage}+0]]}} {{dmg1type=@{attack_damagetype}}} {{dmg2=[[@{attack_damage2}+0]]}} {{dmg2type=@{attack_damagetype2}}}" class="sheet-hidden"></button>
 											<button type="roll" name="roll_npc_crit" value="@{wtype}&{template:npcdmg} @{damage_flag} {{crit=1}} {{dmg1=[[@{attack_damage}+0]]}} {{dmg1type=@{attack_damagetype}}} {{dmg2=[[@{attack_damage2}+0]]}} {{dmg2type=@{attack_damagetype2}}} {{crit1=[[@{attack_crit}+0]]}} {{crit2=[[@{attack_crit2}+0]]}}" class="sheet-hidden"></button>
-										</div>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-					</div>
-					<input type="hidden" name="attr_npcreactionsflag" value="0" class="sheet-field-toggle">
-					<div class="sheet-container-panel sheet-npc-reactions npc-reactions">
-						<div class="sheet-container-header">Reactions</div>
-						<div class="sheet-container-body">
-							<fieldset class="repeating_npcreaction">
-								<div class="sheet-fieldset-item sheet-fieldset-item-npcreaction">
-									<div class="sheet-checkbox-cog">
-										<input type="checkbox" name="attr_npc_options-flag" checked="checked" value="on">
-										<span class="sheet-toggle-icon"></span>
-									</div>
-									<input type="checkbox" name="attr_npc_options-flag" checked="checked" class="sheet-toggle" hidden>
-									<div class="sheet-toggle-checked">
-										<div class="sheet-form">
-											<div class="sheet-form-header">Edit Reaction</div>
-											<div class="sheet-form-body">
-												<div class="sheet-form-group">
-													<label>Name:</label>
-													<input type="text" name="attr_name">
-												</div>
-												<div class="sheet-form-group">
-													<label>Description:</label>
-													<textarea name="attr_desc"></textarea>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="sheet-toggle-unchecked">
-										<div class="sheet-npc-reaction">
-											<button type="roll" name="roll_npc_action" value="@{wtype}&{template:npcaction} @{npc_name_flag} {{rname=@{name}}} {{description=@{desc}}} @{charname_output}" class="sheet-fieldset-item-npcaction-checked-roll sheet-btn-text">
-												<div class="sheet-npc-reaction-name">
-													<span name="attr_name"></span>
-												</div>
-												<div class="sheet-npc-reaction-description">
-													<span name="attr_desc"></span>
-												</div>
-											</button>
 										</div>
 									</div>
 								</div>
@@ -1701,36 +1705,59 @@
 							</div>
 							<div class="sheet-grouping-pc-health-conditions">
 								<div class="sheet-container-well sheet-container-well-health">
-									<div class="sheet-container-box sheet-pc-hp-max">
-										<div class="sheet-container-header">Hit Points</div>
-										<div class="sheet-container-body">
-											<input type="text" name="attr_hp_max" title="@{hp_max}">
-										</div>
-										<div class="sheet-container-footer">Maximum</div>
-									</div>
 									<div class="sheet-container-box sheet-pc-hp-current">
 										<div class="sheet-container-header">Hit Points</div>
 										<div class="sheet-container-body">
-                                            <input type="number" class="health-input-value" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px;" name="attr_hp" title="@{hp}">
-                                            <input type="number" class="health-input-value" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px;" name="attr_hp_temp" title="@{hp_temp}">
+                                            <input type="number" class="health-input-value" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px; max-width: 100px; padding-bottom: 7px;" name="attr_hp" title="@{hp}">
+                                            <input type="text" class="health-input-value" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px; max-width: 70px; padding-bottom: 4px;" name="attr_hp_max" title="@{hp_max}">
 										</div>
 										<div class="sheet-container-footer">
 											<span>Current</span>
-											<span>Temporary</span>
+											<span>Maximum</span>
 										</div>
 									</div>
-									<div class="sheet-container-box sheet-pc-hit-dice">
-										<div class="sheet-container-header">
-											<button type="roll" name="roll_hit_dice" value="@{wtype}&{template:simple} {{rname=Hit Dice}} {{mod=D@{hitdie_final}+[[@{constitution_mod}[CON]]]}} {{r1=[[1d@{hitdie_final}+[[@{constitution_mod}]][CON]]]}} {{normal=1}} @{charname_output}">Hit Dice</button>
-										</div>
+									<div class="sheet-container-box sheet-pc-hp-max">
+										<div class="sheet-container-header">Hit Points</div>
 										<div class="sheet-container-body">
-											<input class="current-hit-dice" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px;" type="number" name="attr_hit_dice" title="@{hit_dice}">
-											<span>/</span>
-											<input type="text" name="attr_hit_dice_max" title="@{hit_dice_max}">
+											<input type="number" style="display: block; border: none; min-width: 0; text-align: center; max-height: 30px; max-width: 90px; margin-top: 7px; margin-left: 10px; padding-bottom: 12px;" name="attr_hp_temp" title="@{hp_temp}">
 										</div>
-										<div class="sheet-container-footer">
-											<span>Remaining</span>
-											<span>Maximum</span>
+										<div class="sheet-container-footer">Temporary</div>
+									</div>
+									<div class="sheet-container-panel sheet-pc-hit-dice">
+										<div class="sheet-container-header">Hit Dice</div>
+										<div class="sheet-container-body">
+											<table>
+												<tr>
+													<th style="font-size: 8px; font-weight: bold; justify-content: center; position: relative; text-transform: uppercase;">Die</th>
+													<th style="font-size: 8px; font-weight: bold; justify-content: center; position: relative; text-transform: uppercase; padding: 0 10px;">Current</th>
+													<th style="font-size: 8px; font-weight: bold; justify-content: center; position: relative; text-transform: uppercase;">Max</th>
+													<th style="font-size: 8px; font-weight: bold; justify-content: center; position: relative; text-transform: uppercase;">Roll</th>
+												</tr>
+												<tr>
+													<td>d6</td>
+													<td><input type="number" name="attr_d6_hit_dice" title="@{d6_hit_dice}" style="border: none; max-width: 40px; margin-left: 20px;"></td>
+													<td><input type="number" name="attr_d6_hit_dice_max" title="@{d6_hit_dice_max}" style="border: none; max-width: 40px;"></td>
+													<td><button type="roll" value="@{wtype}&{template:simple} {{rname=d6 Hit Dice}} {{mod=D6+[[@{constitution_mod}[CON]]]}} {{r1=[[1d6+[[@{constitution_mod}]][CON]]]}} {{normal=1}} @{charname_output}" name="roll_d6_hit_dice" style="font-family: 'dicefontd20'; border: none; font-size: 17px;">0</button></td>
+												</tr>
+												<tr>
+													<td>d8</td>
+													<td><input type="number" name="attr_d8_hit_dice" title="@{d8_hit_dice}" style="border: none; max-width: 40px; margin-left: 20px;"></td>
+													<td><input type="number" name="attr_d8_hit_dice_max" title="@{d8_hit_dice_max}" style="border: none; max-width: 40px;"></td>
+													<td><button type="roll" value="@{wtype}&{template:simple} {{rname=d8 Hit Dice}} {{mod=d8+[[@{constitution_mod}[CON]]]}} {{r1=[[1d8+[[@{constitution_mod}]][CON]]]}} {{normal=1}} @{charname_output}" name="roll_d8_hit_dice" style="font-family: 'dicefontd20'; border: none; font-size: 17px;">0</button></td>
+												</tr>
+												<tr>
+													<td>d10</td>
+													<td><input type="number" name="attr_d10_hit_dice" title="@{d10_hit_dice}" style="border: none; max-width: 40px; margin-left: 20px;"></td>
+													<td><input type="number" name="attr_d10_hit_dice_max" title="@{d10_hit_dice_max}" style="border: none; max-width: 40px;"></td>
+													<td><button type="roll" value="@{wtype}&{template:simple} {{rname=d10 Hit Dice}} {{mod=d10+[[@{constitution_mod}[CON]]]}} {{r1=[[1d10+[[@{constitution_mod}]][CON]]]}} {{normal=1}} @{charname_output}" name="roll_d10_hit_dice" style="font-family: 'dicefontd20'; border: none; font-size: 17px;">0</button></td>
+												</tr>
+												<tr>
+													<td>d12</td>
+													<td><input type="number" name="attr_d12_hit_dice" title="@{d12_hit_dice}" style="border: none; max-width: 40px; margin-left: 20px;"></td>
+													<td><input type="number" name="attr_d12_hit_dice_max" title="@{d12_hit_dice_max}" style="border: none; max-width: 40px;"></td>
+													<td><button type="roll" value="@{wtype}&{template:simple} {{rname=d12 Hit Dice}} {{mod=d12+[[@{constitution_mod}[CON]]]}} {{r1=[[1d12+[[@{constitution_mod}]][CON]]]}} {{normal=1}} @{charname_output}" name="roll_d12_hit_dice" style="font-family: 'dicefontd20'; border: none; font-size: 17px;">0</button></td>
+												</tr>
+											</table>
 										</div>
 									</div>
 									<div class="sheet-container-box sheet-pc-death">
@@ -1778,55 +1805,6 @@
 													<span></span>
 												</div>
 											</div>
-										</div>
-									</div>
-									<div class="sheet-container-panel sheet-pc-health">
-										<div class="sheet-container-header">Health</div>
-										<div class="sheet-container-body">
-											<ul class="sheet-list-conditions">
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="0" title="@{condition_health}">
-														<span title="@{condition_health}">Robust</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="1" title="@{condition_health}">
-														<span title="@{condition_health}">Healthy</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="2" checked="checked" title="@{condition_health}">
-														<span title="@{condition_health}">Ok</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="3" title="@{condition_health}">
-														<span title="@{condition_health}">Hit</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="4" title="@{condition_health}">
-														<span title="@{condition_health}">Bloodied</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="5" title="@{condition_health}">
-														<span title="@{condition_health}">Hurt</span>
-													</label>
-												</li>
-												<li>
-													<label class="sheet-radio">
-														<input type="radio" name="attr_condition_health" value="6" title="@{condition_health}">
-														<span title="@{condition_health}">Critical</span>
-													</label>
-												</li>
-											</ul>
 										</div>
 									</div>
 									<div class="sheet-container-panel sheet-pc-wounds">
@@ -5924,7 +5902,6 @@
 												<div class="sheet-form-group">
 													<label>Hit Die:</label>
 													<select name="attr_hitdietype" title="@{hitdietype}">
-														<option value="4">d4</option>
 														<option value="6">d6</option>
 														<option value="8">d8</option>
 														<option value="10">d10</option>
@@ -6119,7 +6096,6 @@
 												<div class="sheet-form-group">
 													<label>Hit Die:</label>
 													<select name="attr_cust_hitdietype" title="@{cust_hitdietype}">
-														<option value="4">d4</option>
 														<option value="6">d6</option>
 														<option value="8">d8</option>
 														<option value="10">d10</option>
@@ -8581,7 +8557,6 @@
 
 					getAttrs(attrs_to_get, function(v) {
 						_.each(skills_array, function(s) {
-							console.log("UPDATING SKILL: " + s);
 							var attr_mod = 0;
 							if (v[s + "_attribute"]) {
 								var attribute = v[s + "_attribute"].toLowerCase() + "_mod";
@@ -9470,13 +9445,22 @@
 					});
 
 					var contentarray = page.content;
+					var legendaryactionsarray;
+					var legendaryactionsmax;
 					if (page.data["data-Legendary Actions"]) {
-						var legendaryactionsarray = jsonparse(page.data["data-Legendary Actions"]);
+						legendaryactionsarray = jsonparse(page.data["data-Legendary Actions"]);
+						legendaryactionsmax = jsonparse(page.data["data-LANum"]);
+
 						update["npc_legendary_actions"] = 1;
+						update["npc_legendary_actions_max"] = legendaryactionsmax;
+
+						currentData.npc_legendary_actions = legendaryactionsmax;
+						var actionText = currentData.npc_legendary_actions == 1 ? "action" : "actions";
+						
 						if (page.data["Legendary Actions Desc"]) {
 							update["npc_legendary_actions_desc"] = page.data["Legendary Actions Desc"];
-						} else if (currentData.npc_legendary_actions > 0) {
-							update["npc_legendary_actions_desc"] = `The ${page.name} can take ${currentData.npc_legendary_actions}, choosing from the options below. Only one legendary option can be used at a time and only at the end of another creature's turn. The ${page.name} regains spent legendary actions at the start of its turn.`;
+						} else if (legendaryactionsarray.length > 0) {
+							update["npc_legendary_actions_desc"] = `The ${page.name} can take ${currentData.npc_legendary_actions} legendary ${actionText}, choosing from the options below. Only one legendary option can be used at a time and only at the end of another creature's turn. The ${page.name} regains spent legendary actions at the start of its turn.`;
 						} else {
 							update["npc_legendary_actions_desc"] = "";
 						}
@@ -9486,7 +9470,7 @@
 						} else {
 							temp = contentarray.split(/Legendary Actions\n/)
 						}
-						var legendaryactionsarray = temp[1];
+						legendaryactionsarray = temp[1];
 						contentarray = temp[0];
 					}
 
@@ -9742,7 +9726,7 @@
 							});
 						} else {
 							var numlegendaryactions = (legendaryactionsarray.match(/\d+/) || [""])[0];
-							update["npc_legendary_actions"] = numlegendaryactions;
+							update["npc_legendary_actions"] = legendaryactionsmax;
 							update["npc_legendary_actions_desc"] = `The ${page.name} can take ${numlegendaryactions}, choosing from the options below. Only one legendary option can be used at a time and only at the end of another creature's turn. The ${page.name} regains spent legendary actions at the start of its turn.`;
 							legendaryactionsarray = legendaryactionsarray.split("**");
 							legendaryactionsarray.shift();
@@ -9873,8 +9857,25 @@
 						}
 						if (page.data["Hit Die"] && page.data["Hit Die"] !== "") {
 							update["base_level"] = currentData.base_level ? currentData.base_level : "1";
-							update["hit_dice_max"] = update["base_level"] + page.data["Hit Die"];
-							update["hit_dice"] = update["base_level"];
+							var retDie = checkHitDie(update["class"]);
+							console.log("Hey we're in the cool thing! " + retDie);
+
+							if (retDie == 12)
+							{
+								update["d12_hit_dice_max"] = update["base_level"];
+							}
+							else if (retDie == 10)
+							{
+								update["d10_hit_dice_max"] = update["base_level"];
+							}
+							else if (retDie == 8)
+							{
+								update["d8_hit_dice_max"] = update["base_level"];
+							}
+							else if (retDie == 6)
+							{
+								update["d6_hit_dice_max"] = update["base_level"];
+							}
 						}
 						if (page.data["Spellcasting Ability"] && page.data["Spellcasting Ability"] !== "") {
 							update["spellcasting_ability"] = "@{" + page.data["Spellcasting Ability"].toLowerCase() + "_mod}+";
@@ -10408,6 +10409,7 @@
 						});
 					};
 					/**/
+					set_level();
 				});
 
 				return {
@@ -11866,7 +11868,7 @@
 			};
 
 			var update_class = function() {
-				getAttrs(["class", "base_level", "custom_class", "cust_classname", "cust_hitdietype", "cust_spellcasting_ability", "cust_strength_save_prof", "cust_dexterity_save_prof", "cust_constitution_save_prof", "cust_intelligence_save_prof", "cust_wisdom_save_prof", "cust_charisma_save_prof", "strength_save_prof", "dexterity_save_prof", "constitution_save_prof", "intelligence_save_prof", "wisdom_save_prof", "charisma_save_prof", "subclass", "multiclass1", "multiclass1_subclass", "multiclass2", "multiclass2_subclass", "multiclass3", "multiclass3_subclass", "npc"], function(v) {
+				getAttrs(["class", "base_level", "custom_class", "cust_classname", "cust_hitdietype", "hitdietype", "cust_spellcasting_ability", "cust_strength_save_prof", "cust_dexterity_save_prof", "cust_constitution_save_prof", "cust_intelligence_save_prof", "cust_wisdom_save_prof", "cust_charisma_save_prof", "strength_save_prof", "dexterity_save_prof", "constitution_save_prof", "intelligence_save_prof", "wisdom_save_prof", "charisma_save_prof", "subclass", "multiclass1", "multiclass1_subclass", "multiclass2", "multiclass2_subclass", "multiclass3", "multiclass3_subclass", "npc"], function(v) {
 					if (v.npc && v.npc == "1") {
 						return;
 					}
@@ -11885,7 +11887,7 @@
 						update = {};
 						switch (v.class) {
 							case "":
-								update["hitdietype"] = 6;
+								update["hitdietype"] = 12;
 								update["spellcasting_ability"] = "0*";
 								update["strength_save_prof"] = 0;
 								update["dexterity_save_prof"] = 0;
@@ -12005,6 +12007,7 @@
 								update["charisma_save_prof"] = "(@{pb})";
 								break;
 							case "Wizard":
+								console.log("wizard time");
 								update["hitdietype"] = 6;
 								update["spellcasting_ability"] = "@{intelligence_mod}+";
 								update["strength_save_prof"] = 0;
@@ -12018,13 +12021,13 @@
 						setAttrs(update, {
 							silent: true
 						});
+						set_level();
 					};
 				});
-				set_level();
 			};
 
 			var set_level = function() {
-				getAttrs(["base_level", "multiclass1_flag", "multiclass2_flag", "multiclass3_flag", "multiclass1_lvl", "multiclass2_lvl", "multiclass3_lvl", "class", "multiclass1", "multiclass2", "multiclass3", "arcane_fighter", "arcane_rogue", "custom_class", "cust_spellslots", "cust_classname", "level_calculations", "class", "subclass", "multiclass1_subclass", "multiclass2_subclass", "multiclass3_subclass"], function(v) {
+				getAttrs(["base_level", "multiclass1_flag", "multiclass2_flag", "multiclass3_flag", "multiclass1_lvl", "multiclass2_lvl", "multiclass3_lvl", "class", "multiclass1", "multiclass2", "multiclass3", "arcane_fighter", "arcane_rogue", "custom_class", "cust_spellslots", "cust_classname", "level_calculations", "class", "subclass", "multiclass1_subclass", "multiclass2_subclass", "multiclass3_subclass", "d6_hit_dice_max", "d8_hit_dice_max", "d10_hit_dice_max", "d12_hit_dice_max", "hitdietype"], function(v) {
 					var update = {};
 					var callbacks = [];
 					var multiclass = (v.multiclass1_flag && v.multiclass1_flag === "1") || (v.multiclass2_flag && v.multiclass2_flag === "1") || (v.multiclass3_flag && v.multiclass3_flag === "1") ? true : false;
@@ -12034,6 +12037,14 @@
 					var hitdie_final = multiclass ? "?{Hit Die Class|" + charclass + ",@{hitdietype}" : "@{hitdietype}";
 					var subclass = v.subclass ? v.subclass + " " : "";
 					var class_display = subclass + charclass + " " + finallevel;
+					var used_hit_die = v.hitdietype;
+					var multiclass1Die = "";
+					var multiclass2Die = "";
+					var multiclass3Die = "";
+					var multiclass1Level = "";
+					var multiclass2Level = "";
+					var multiclass3Level = "";
+					var base_level = v.base_level;
 
 					// This nested array is used to determine the overall spellcasting level for the character.
 					var classes = [
@@ -12042,24 +12053,32 @@
 
 					if (v.multiclass1_flag && v.multiclass1_flag === "1") {
 						var multiclasslevel = (v["multiclass1_lvl"] && v["multiclass1_lvl"] > 0) ? parseInt(v["multiclass1_lvl"], 10) : 1;
+						multiclass1Level = multiclasslevel;
 						finallevel = finallevel + multiclasslevel;
 						hitdie_final = hitdie_final + "|" + v["multiclass1"].charAt(0).toUpperCase() + v["multiclass1"].slice(1) + "," + checkHitDie(v["multiclass1"]);
+						multiclass1Die = checkHitDie(v["multiclass1"]);
 						classes.push([v["multiclass1"], multiclasslevel]);
 						var subclass = v.multiclass1_subclass ? v.multiclass1_subclass + " " : "";
 						class_display = class_display + ", " + subclass + v.multiclass1 + " " + multiclasslevel;
 					};
+
 					if (v.multiclass2_flag && v.multiclass2_flag === "1") {
 						var multiclasslevel = (v["multiclass2_lvl"] && v["multiclass2_lvl"] > 0) ? parseInt(v["multiclass2_lvl"], 10) : 1;
+						multiclass2Level = multiclasslevel;
 						finallevel = finallevel + multiclasslevel;
 						hitdie_final = hitdie_final + "|" + v["multiclass2"].charAt(0).toUpperCase() + v["multiclass2"].slice(1) + "," + checkHitDie(v["multiclass2"]);
+						multiclass2Die = checkHitDie(v["multiclass2"]);
 						classes.push([v["multiclass2"], multiclasslevel]);
 						var subclass = v.multiclass2_subclass ? v.multiclass2_subclass + " " : "";
 						class_display = class_display + ", " + subclass + v.multiclass2 + " " + multiclasslevel;
 					};
+
 					if (v.multiclass3_flag && v.multiclass3_flag === "1") {
 						var multiclasslevel = (v["multiclass3_lvl"] && v["multiclass3_lvl"] > 0) ? parseInt(v["multiclass3_lvl"], 10) : 1;
+						multiclass3Level = multiclasslevel;
 						finallevel = finallevel + multiclasslevel;
 						hitdie_final = hitdie_final + "|" + v["multiclass3"].charAt(0).toUpperCase() + v["multiclass3"].slice(1) + "," + checkHitDie(v["multiclass3"]);
+						multiclass3Die = checkHitDie(v["multiclass3"]);
 						classes.push([v["multiclass3"], multiclasslevel]);
 						var subclass = v.multiclass3_subclass ? v.multiclass3_subclass + " " : "";
 						class_display = class_display + ", " + subclass + v.multiclass3 + " " + multiclasslevel;
@@ -12073,7 +12092,43 @@
 					update["class_display"] = class_display;
 
 					if (!v["level_calculations"] || v["level_calculations"] == "on") {
-						update["hit_dice_max"] = finallevel;
+						update["d12_hit_dice_max"] = "";
+						update["d10_hit_dice_max"] = "";
+						update["d8_hit_dice_max"] = "";
+						update["d6_hit_dice_max"] = "";
+
+						var dices = {
+							6: 0,
+							8: 0,
+							10: 0,
+							12: 0
+						};
+
+						dices[used_hit_die] = dices[used_hit_die] + Number(base_level);
+						dices[multiclass1Die] = dices[multiclass1Die] + multiclass1Level;
+						dices[multiclass2Die] = dices[multiclass2Die] + multiclass2Level;
+						dices[multiclass3Die] = dices[multiclass3Die] + multiclass3Level;
+
+						for (const [key, value] of Object.entries(dices)) 
+						{
+							if (key == 6)
+							{
+								update["d6_hit_dice_max"] = dices[6] == 0 ? "" : dices[6];
+							}
+							else if (key == 8)
+							{
+								update["d8_hit_dice_max"] = dices[8] == 0 ? "" : dices[8];
+							}
+							else if (key == 10)
+							{
+								update["d10_hit_dice_max"] = dices[10] == 0 ? "" : dices[10];
+							}
+							else if (key == 12)
+							{
+								update["d12_hit_dice_max"] = dices[12] == 0 ? "" : dices[12];
+							}
+						}
+
 						callbacks.push(function() {
 							update_spell_slots();
 						});

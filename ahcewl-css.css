@@ -711,7 +711,55 @@
                 top: 0;
                 width: 100%; }
                 .sheet-form-checkbox-special span::before {
-                  content: 'l'; }
+                  content: 'i'; }
+
+    .sheet-form-checkbox-spell:hover span {
+      color: lightgray;
+      opacity: 1;
+    }
+    .sheet-form-checkbox-spell {
+      height: 18px;
+      margin-right: 5px;}
+      .sheet-form-checkbox-spell input {
+        position: absolute;
+        opacity: 0;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+        z-index: 1;
+        margin-top: 6px;
+      }
+      .sheet-form-checkbox-spell input:checked ~ span {
+        border: none;
+        opacity: 1; }
+        .sheet-form-checkbox-spell input:checked ~ span::before {
+          color: black; }
+            .sheet-form-checkbox-spell:hover input:checked ~ span {
+              opacity: 1; }
+              .sheet-form-checkbox-spell span {
+                align-items: center;
+                border-radius: 50%;
+                box-sizing: border-box;
+                color: black;
+                display: flex;
+                font-family: 'Pictos';
+                font-size: 13px;
+                height: 100%;
+                justify-content: center;
+                opacity: .25;
+                top: 0;}
+                .sheet-form-checkbox-spell span::before {
+                  content: 'i'; }
+
+    
+    button[type=roll].spell-message-button::before {
+      font-family: 'Pictos';
+      content: 'w';
+      border: none;
+      font-size: 7px;
+      max-width: 15px;
+    }
+                  
     .charsheet .sheet-darkerdungeons .sheet-form .sheet-form-checkbox {
       cursor: pointer;
       display: flex; }
@@ -1142,6 +1190,35 @@
   .sheet-actions .sheet-bold {
     font-weight: bold; }
   .sheet-rolltemplate-spell .sheet-spacer {
+    height: 5px; }
+  
+  .sheet-rolltemplate-5eDefault .sheet-grey {
+    color: #A0A0A0;
+    font-weight: normal; }
+  .sheet-rolltemplate-5eDefault .sheet-container {
+    width: 263px;
+    background: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/5th%20Edition%20OGL%20by%20Roll20/images/spellbg.jpg) center center;
+    background-size: auto;
+    background-repeat: repeat;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    padding: 10px;
+    margin-left: -45px;
+    border: 1px solid black; }
+  .withoutavatars .sheet-rolltemplate-5eDefault .sheet-container {
+    margin-left: -15px; }
+  .sheet-rolltemplate-5eDefault .sheet-row {
+    display: block; }
+  .sheet-rolltemplate-5eDefault .sheet-title {
+    color: #7e2d40;
+    font-size: 1.2em; }
+  .sheet-rolltemplate-5eDefault .sheet-italics,
+  .sheet-npc .sheet-italics {
+    font-style: italic; }
+  .sheet-rolltemplate-5eDefault .sheet-bold,
+  .sheet-actions .sheet-bold {
+    font-weight: bold; }
+  .sheet-rolltemplate-5eDefault .sheet-spacer {
     height: 5px; }
   .sheet-rolltemplate-npc,
   .sheet-rolltemplate-npcaction .sheet-container,
@@ -3077,11 +3154,7 @@
       width: 100%;
       overflow: hidden; }
       .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-spells .sheet-pc-spell button:hover {
-        background: #e5fffb;
-        margin-left: -3px;
-        margin-right: -3px;
-        padding-left: 3px;
-        padding-right: 3px; }
+        background: #e5fffb; }
     .charsheet .sheet-darkerdungeons .sheet-section-pc .sheet-tab-spells .sheet-pc-spell .sheet-checkbox-image {
       margin-right: 5px;
       flex-shrink: 0;

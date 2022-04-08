@@ -3073,7 +3073,7 @@
 													<span class="sheet-toggle-icon"></span>
 												</div>
 												<div class="sheet-form-checkbox-special">
-													<input type="checkbox" name="attr_hide_details" title="Hide Details" value="1" checked="checked">
+													<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
 													<span class="sheet-toggle-icon"></span>
 												</div>
 												<input type="checkbox" name="attr_options-flag" checked="checked" class="sheet-toggle" hidden>
@@ -3654,7 +3654,7 @@
 														<div class="sheet-form-header">Edit Spell</div>
 														<div class="sheet-form-body">
 															<input type="hidden" name="attr_spellattackid">
-															<input type="hidden" name="attr_spelllevel" value="cantrip">
+															<input type="hidden" name="attr_spelllevel" value="Cantrip">
 															<input type="hidden" name="attr_spelloutput">
 															<input type="hidden" name="attr_spellcomp">
 															<div class="sheet-form-group">
@@ -3664,14 +3664,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -3704,6 +3704,9 @@
 																	<input type="checkbox" name="attr_spellcomp_m" value="{{m=1}}" checked="checked">
 																	<span>M</span>
 																</label>
+															</div>
+															<div class="sheet-form-group">
+																<label>Materials:</label>
 																<input type="text" name="attr_spellcomp_materials">
 															</div>
 															<div class="sheet-form-group">
@@ -3832,6 +3835,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -3852,6 +3860,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -3889,14 +3943,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -4057,6 +4111,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -4077,6 +4136,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -4114,14 +4219,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -4282,6 +4387,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -4302,6 +4412,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -4339,14 +4495,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -4507,6 +4663,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -4527,6 +4688,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -4564,14 +4771,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -4732,6 +4939,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -4752,6 +4964,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -4789,14 +5047,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -4957,6 +5215,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -4977,6 +5240,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -5014,14 +5323,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -5182,6 +5491,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -5202,6 +5516,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -5239,14 +5599,14 @@
 															<div class="sheet-form-group">
 																<label>School:</label>
 																<select name="attr_spellschool">
-																	<option value="abjuration">Abjuration</option>
-																	<option value="conjuration">Conjuration</option>
-																	<option value="divination">Divination</option>
-																	<option value="enchantment">Enchantment</option>
-																	<option value="evocation">Evocation</option>
-																	<option value="illusion">Illusion</option>
-																	<option value="necromancy">Necromancy</option>
-																	<option value="transmutation">Transmutation</option>
+																	<option value="Abjuration">Abjuration</option>
+																	<option value="Conjuration">Conjuration</option>
+																	<option value="Divination">Divination</option>
+																	<option value="Enchantment">Enchantment</option>
+																	<option value="Evocation">Evocation</option>
+																	<option value="Illusion">Illusion</option>
+																	<option value="Necromancy">Necromancy</option>
+																	<option value="Transmutation">Transmutation</option>
 																</select>
 																<label class="sheet-form-checkbox">
 																	<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -5407,6 +5767,11 @@
 															<input type="checkbox" name="attr_spellprepared" value="1">
 															<span></span>
 														</div>
+														<div class="sheet-form-checkbox-spell">
+															<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+															<span class="sheet-toggle-icon"></span>
+														</div>
+														<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 														<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 														<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 															<span class="sheet-pc-spell-name">
@@ -5427,6 +5792,52 @@
 																<span>M</span>
 															</span>
 														</button>
+													</div>
+													<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+													<div class="sheet-pc-feature-details">
+														<div>
+															<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+														</div>
+														<div>
+															<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+															<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+															<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+															<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															<span> </span>
+															<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+														</div>
+														<div>
+															<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+															<br>
+															<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
+														<div>
+															<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+															<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -5465,14 +5876,14 @@
 																<div class="sheet-form-group">
 																	<label>School:</label>
 																	<select name="attr_spellschool">
-																		<option value="abjuration">Abjuration</option>
-																		<option value="conjuration">Conjuration</option>
-																		<option value="divination">Divination</option>
-																		<option value="enchantment">Enchantment</option>
-																		<option value="evocation">Evocation</option>
-																		<option value="illusion">Illusion</option>
-																		<option value="necromancy">Necromancy</option>
-																		<option value="transmutation">Transmutation</option>
+																		<option value="Abjuration">Abjuration</option>
+																		<option value="Conjuration">Conjuration</option>
+																		<option value="Divination">Divination</option>
+																		<option value="Enchantment">Enchantment</option>
+																		<option value="Evocation">Evocation</option>
+																		<option value="Illusion">Illusion</option>
+																		<option value="Necromancy">Necromancy</option>
+																		<option value="Transmutation">Transmutation</option>
 																	</select>
 																	<label class="sheet-form-checkbox">
 																		<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -5633,6 +6044,11 @@
 																<input type="checkbox" name="attr_spellprepared" value="1">
 																<span></span>
 															</div>
+															<div class="sheet-form-checkbox-spell">
+																<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+																<span class="sheet-toggle-icon"></span>
+															</div>
+															<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 															<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 															<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 																<span class="sheet-pc-spell-name">
@@ -5653,6 +6069,52 @@
 																	<span>M</span>
 																</span>
 															</button>
+														</div>
+														<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+														<div class="sheet-pc-feature-details">
+															<div>
+																<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+															</div>
+															<div>
+																<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+																<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+																<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+																<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+																<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+																<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+																<span> </span>
+																<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+																<br>
+																<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -5690,14 +6152,14 @@
 																<div class="sheet-form-group">
 																	<label>School:</label>
 																	<select name="attr_spellschool">
-																		<option value="abjuration">Abjuration</option>
-																		<option value="conjuration">Conjuration</option>
-																		<option value="divination">Divination</option>
-																		<option value="enchantment">Enchantment</option>
-																		<option value="evocation">Evocation</option>
-																		<option value="illusion">Illusion</option>
-																		<option value="necromancy">Necromancy</option>
-																		<option value="transmutation">Transmutation</option>
+																		<option value="Abjuration">Abjuration</option>
+																		<option value="Conjuration">Conjuration</option>
+																		<option value="Divination">Divination</option>
+																		<option value="Enchantment">Enchantment</option>
+																		<option value="Evocation">Evocation</option>
+																		<option value="Illusion">Illusion</option>
+																		<option value="Necromancy">Necromancy</option>
+																		<option value="Transmutation">Transmutation</option>
 																	</select>
 																	<label class="sheet-form-checkbox">
 																		<input type="checkbox" name="attr_spellritual" value="{{ritual=1}}">
@@ -5858,6 +6320,11 @@
 																<input type="checkbox" name="attr_spellprepared" value="1">
 																<span></span>
 															</div>
+															<div class="sheet-form-checkbox-spell">
+																<input type="checkbox" name="attr_hide_details" title="Show / Hide" value="1" checked="checked">
+																<span class="sheet-toggle-icon"></span>
+															</div>
+															<button type="roll" name="roll_SpellInfo" title="Speak" value="&{template:5eDefault} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}" style="font-family: 'Pictos'; font-size: 15px; max-width: 17px; margin-right: 2px; margin-left: 2px; margin-top: 1px;">w</button>
 															<input type="hidden" name="attr_rollcontent" value="@{wtype}&{template:spell} {{level=@{spellschool} @{spelllevel}}} {{name=@{spellname}}} {{castingtime=@{spellcastingtime}}} {{range=@{spellrange}}} {{target=@{spelltarget}}} @{spellcomp_v} @{spellcomp_s} @{spellcomp_m} {{material=@{spellcomp_materials}}} {{duration=@{spellduration}}} {{description=@{spelldescription}}} {{athigherlevels=@{spellathigherlevels}}} @{spellritual} {{innate=@{innate}}} @{spellconcentration} @{charname_output}">
 															<button type="roll" name="roll_spell" value="@{rollcontent}" class="sheet-pc-spell-button">
 																<span class="sheet-pc-spell-name">
@@ -5878,6 +6345,52 @@
 																	<span>M</span>
 																</span>
 															</button>
+														</div>
+														<input type="hidden" name="attr_hide_details" class="sheet-field-untoggle">
+														<div class="sheet-pc-feature-details">
+															<div>
+																<span name="attr_spellname" style="font-size: 18px; color: #7e2d40; font-family: 'Times New Roman', Times, serif;"></span>
+															</div>
+															<div>
+																<span name="attr_spelllevel" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+																<span name="attr_spellschool" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+																<span name="attr_spellritualdisplay" style="font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Casting Time: </span>
+																<span name="attr_spellcastingtime" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Range: </span>
+																<span name="attr_spellrange" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_target_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spelltarget_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spellcompdisplay_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellcompdisplay" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_material_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellcomp_materials_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Duration: </span>
+																<span name="attr_spellconcentration_display" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+																<span> </span>
+																<span name="attr_spellduration" style="font-family: 'Times New Roman', Times, serif; font-size: 15px;"></span>
+															</div>
+															<div>
+																<span style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;">Description: </span>
+																<br>
+																<span name="attr_spelldescription" style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+															</div>
+															<div>
+																<span name="attr_spell_higher_level_label" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 15px;"></span>
+																<span name="attr_spellathigherlevels_display"  style="font-family: 'Times New Roman', Times, serif; font-size: 15px; white-space: pre-wrap;"></span>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -7634,6 +8147,56 @@
 						{{/charname}}
 					</div>
 				</rolltemplate>
+				<rolltemplate class="sheet-rolltemplate-5eDefault">
+					<div class="container">
+						<div class="title row">
+							<span>{{name}}</span>{{#innate}}<span class="grey">, {{innate}}</span>{{/innate}}
+						</div>
+						<div class="italics row">
+							<span>{{level}}{{#ritual}} (<span>Ritual</span>){{/ritual}}</span>
+						</div>
+						<div class="spacer"></div>
+						{{#castingtime}}
+							<div class="row">
+								<span class="bold">Casting Time:</span> <span>{{castingtime}}</span>
+							</div>
+						{{/castingtime}}
+						{{#range}}
+							<div class="row">
+								<span class="bold">Range:</span> <span>{{range}}</span>
+							</div>
+						{{/range}}
+						{{#target}}
+							<div class="row">
+								<span class="bold">Target:</span> <span>{{target}}</span>
+							</div>
+						{{/target}}
+						<div class="row">
+							<span class="bold">Components:</span>
+							<span>
+								{{#v}}V{{#s}}, {{/s}}{{^s}}{{#m}}, {{/m}}{{/s}}{{/v}}
+								{{#s}}S{{#m}}, {{/m}}{{/s}}
+								{{#m}}M {{#material}}({{material}}){{/material}}{{/m}}
+							</span>
+						</div>
+						{{#duration}}
+							<div class="row">
+								<span class="bold">Duration:</span> <span>{{#concentration}}<span>Concentration</span> {{/concentration}}{{duration}}</span>
+							</div>
+						{{/duration}}
+						<div class="spacer"></div>
+						{{#description}}
+							<div class="row">
+								<span style="white-space: normal">{{description}}</span>
+							</div>
+						{{/description}}
+						{{#athigherlevels}}
+							<div class="row">
+								<span class="bold italics">At Higher Levels</span>. <span class="description">{{athigherlevels}}</span>
+							</div>
+						{{/athigherlevels}}
+					</div>
+				</rolltemplate>
 
 				<rolltemplate class="sheet-rolltemplate-spell">
 					<div class="container">
@@ -8074,7 +8637,7 @@
 			});
 
 			['spell-cantrip', 'spell-1', 'spell-2', 'spell-3', 'spell-4', 'spell-5', 'spell-6', 'spell-7', 'spell-8', 'spell-9'].forEach(attr => {
-				on(`change:repeating_${attr}:includedesc change:repeating_${attr}:innate change:repeating_${attr}:spell_ability change:repeating_${attr}:spell_updateflag change:repeating_${attr}:spellathigherlevels change:repeating_${attr}:spellattack change:repeating_${attr}:spelldamage change:repeating_${attr}:spelldamage2 change:repeating_${attr}:spelldamagetype change:repeating_${attr}:spelldamagetype2 change:repeating_${attr}:spelldescription change:repeating_${attr}:spelldmgmod change:repeating_${attr}:spellhealing change:repeating_${attr}:spellhlbonus change:repeating_${attr}:spellhldie change:repeating_${attr}:spellhldietype change:repeating_${attr}:spellname change:repeating_${attr}:spellprepared change:repeating_${attr}:spellrange change:repeating_${attr}:spellsave change:repeating_${attr}:spellsavesuccess change:repeating_${attr}:spelltarget change:repeating_${attr}:spell_damage_progression`, (eventinfo) => {
+				on(`change:repeating_${attr}:includedesc change:repeating_${attr}:innate change:repeating_${attr}:spell_ability change:repeating_${attr}:spell_updateflag change:repeating_${attr}:spellathigherlevels change:repeating_${attr}:spellattack change:repeating_${attr}:spelldamage change:repeating_${attr}:spelldamage2 change:repeating_${attr}:spelldamagetype change:repeating_${attr}:spelldamagetype2 change:repeating_${attr}:spelldescription change:repeating_${attr}:spelldmgmod change:repeating_${attr}:spellhealing change:repeating_${attr}:spellhlbonus change:repeating_${attr}:spellhldie change:repeating_${attr}:spellhldietype change:repeating_${attr}:spellname change:repeating_${attr}:spellprepared change:repeating_${attr}:spellrange change:repeating_${attr}:spellsave change:repeating_${attr}:spellsavesuccess change:repeating_${attr}:spelltarget change:repeating_${attr}:spell_damage_progression change:repeating_${attr}:spellritual change:repeating_${attr}:spellcomp_v change:repeating_${attr}:spellcomp_s change:repeating_${attr}:spellcomp_m change:repeating_${attr}:spellcomp_materials change:repeating_${attr}:spellconcentration change:repeating_${attr}:attr_spell_target_label`, (eventinfo) => {
 					if (eventinfo.sourceType && eventinfo.sourceType === "sheetworker") {
 						return;
 					}
@@ -8088,6 +8651,101 @@
 						if (attackid && lvl && spellid) {
 							update_attack_from_spell(lvl, spellid, attackid)
 						}
+					});
+
+					getAttrs([repeating_source + "_spelllevel"], function(v) {
+						update = {};
+						var lvl = v[repeating_source + "_spelllevel"];
+
+						getAttrs(["repeating_spell-" + lvl + "_" + spellid + "_spellritual", "repeating_spell-" + lvl + "_" + spellid + "_spellcomp_v", "repeating_spell-" + lvl + "_" + spellid + "_spellcomp_s", "repeating_spell-" + lvl + "_" + spellid + "_spellcomp_m", "repeating_spell-" + lvl + "_" + spellid + "_spellcomp_materials", "repeating_spell-" + lvl + "_" + spellid + "_spellconcentration", "repeating_spell-" + lvl + "_" + spellid + "_spellathigherlevels", "repeating_spell-" + lvl + "_" + spellid + "_spelltarget"], function(v) {
+							
+							if (v["repeating_spell-" + lvl + "_" + spellid + "_spellritual"] == 0)
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellritualdisplay"] = " ";
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellritualdisplay"] = "(Ritual)";
+							}
+
+							var comp_v = v["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_v"] == 0 ? "" : "V";
+							var comp_s = v["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_s"] == 0 ? "" : "S";
+							var comp_m = v["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_m"] == 0 ? "" : "M";
+
+							var componentsArr = [comp_v, comp_s, comp_m];
+							var components = "";
+							var componentsSelected = false;
+
+							for (var i = 0; i < componentsArr.length; i++)
+							{
+								if (componentsArr[i] != "")
+								{
+									components = components + componentsArr[i] + ", ";
+									componentsSelected = true;
+								}
+							}
+
+							components = components.substring(0, components.length - 2);
+
+							if (componentsSelected)
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcompdisplay_label"] = "Components: ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcompdisplay"] = components;
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcompdisplay_label"] = " ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcompdisplay"] = " ";
+							}
+
+							if (v["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_materials"] == 0)
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_material_label"] = " ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_materials_display"] = " ";
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_material_label"] = "Materials: ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_materials_display"] = v["repeating_spell-" + lvl + "_" + spellid + "_spellcomp_materials"];
+							}
+
+							if (v["repeating_spell-" + lvl + "_" + spellid + "_spellconcentration"] == 0)
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellconcentration_display"] = " ";
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellconcentration_display"] = " Concentration,";
+							}
+
+							if (v["repeating_spell-" + lvl + "_" + spellid + "_spellathigherlevels"] == 0)
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_higher_level_label"] = " ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellathigherlevels_display"] = " ";
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_higher_level_label"] = "At Higher Levels: ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spellathigherlevels_display"] =  v["repeating_spell-" + lvl + "_" + spellid + "_spellathigherlevels"];
+							}
+
+							if (v["repeating_spell-" + lvl + "_" + spellid + "_spelltarget"] == null || v["repeating_spell-" + lvl + "_" + spellid + "_spelltarget"] == " " || v["repeating_spell-" + lvl + "_" + spellid + "_spelltarget"] == "")
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_target_label"] = " ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spelltarget_display"] = " ";
+							}
+							else
+							{
+								update["repeating_spell-" + lvl + "_" + spellid + "_spell_target_label"] = "Target: ";
+								update["repeating_spell-" + lvl + "_" + spellid + "_spelltarget_display"] = v["repeating_spell-" + lvl + "_" + spellid + "_spelltarget"];
+							}
+
+							setAttrs(update, {
+								silent: true
+							});
+						});
+
+
 					});
 				});
 			});
@@ -9153,7 +9811,7 @@
 				};
 				if (category === "Spells") {
 					let existing = {};
-					var lvl = page.data["Level"] && page.data["Level"] > 0 ? page.data["Level"] : "cantrip";
+					var lvl = page.data["Level"] && page.data["Level"] > 0 ? page.data["Level"] : "Cantrip";
 					if (repeating["spell-" + lvl]) {
 						_.each(repeating["spell-" + lvl], function(spell, spellid) {
 							if (spell.spellname.toLowerCase() === page.name.toLowerCase()) {
@@ -9162,7 +9820,28 @@
 							}
 						});
 					}
-					update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = lvl;
+
+					if (lvl == "Cantrip")
+					{
+						update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = "Cantrip";
+					}
+					else if (lvl == 1)
+					{
+						update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = "1st Level";
+					}
+					else if (lvl == 2)
+					{
+						update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = "2nd Level";
+					}
+					else if (lvl == 3)
+					{
+						update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = "3rd Level";
+					}
+					else
+					{
+						update["repeating_spell-" + lvl + "_" + id + "_spelllevel"] = lvl + "th Level";
+					}
+
 					if (page.data["spellcasting_ability"]) {
 						update["repeating_spell-" + lvl + "_" + id + "_spell_ability"] = "@{" + page.data["spellcasting_ability"].toLowerCase() + "_mod}+";
 					} else {
@@ -9178,10 +9857,11 @@
 						update["repeating_spell-" + lvl + "_" + id + "_spellname"] = page.name
 					};
 					if (page.data["Ritual"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spellritual"] = "{{ritual=1}}"
+						update["repeating_spell-" + lvl + "_" + id + "_spellritual"] = "{{ritual=1}}";
+						update["repeating_spell-" + lvl + "_" + id + "_spellritualdisplay"] = "(Ritual)";
 					};
 					if (page.data["School"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spellschool"] = page.data["School"].toLowerCase()
+						update["repeating_spell-" + lvl + "_" + id + "_spellschool"] = page.data["School"].charAt(0).toUpperCase() + page.data["School"].substring(1).toLowerCase();
 					};
 					if (page.data["Casting Time"]) {
 						update["repeating_spell-" + lvl + "_" + id + "_spellcastingtime"] = page.data["Casting Time"]
@@ -9190,24 +9870,58 @@
 						update["repeating_spell-" + lvl + "_" + id + "_spellrange"] = page.data["Range"]
 					};
 					if (page.data["Target"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spelltarget"] = page.data["Target"]
+						update["repeating_spell-" + lvl + "_" + id + "_spelltarget"] = page.data["Target"];
+						update["repeating_spell-" + lvl + "_" + id + "_spelltarget_display"] = page.data["Target"];
+						update["repeating_spell-" + lvl + "_" + id + "_spell_target_label"] = "Target: ";
 					};
 					if (page.data["Components"]) {
+
+						var componentStr = "";
+
 						if (page.data["Components"].toLowerCase().indexOf("v") === -1) {
 							update["repeating_spell-" + lvl + "_" + id + "_spellcomp_v"] = "0"
+						}
+						else
+						{
+							componentStr += "V, ";
 						};
+
 						if (page.data["Components"].toLowerCase().indexOf("s") === -1) {
 							update["repeating_spell-" + lvl + "_" + id + "_spellcomp_s"] = "0"
+						}
+						else
+						{
+							componentStr += "S, ";
 						};
+
 						if (page.data["Components"].toLowerCase().indexOf("m") === -1) {
 							update["repeating_spell-" + lvl + "_" + id + "_spellcomp_m"] = "0"
+						}
+						else
+						{
+							componentStr += "M, ";
+						};
+
+						if (componentStr.length > 0)
+						{
+							componentStr = componentStr.substring(0, componentStr.length - 2);
+
+							update["repeating_spell-" + lvl + "_" + id + "_spellcompdisplay_label"] = "Components: ";
+							update["repeating_spell-" + lvl + "_" + id + "_spellcompdisplay"] = componentStr;
 						};
 					};
 					if (page.data["Material"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spellcomp_materials"] = page.data["Material"]
+						update["repeating_spell-" + lvl + "_" + id + "_spellcomp_materials"] = page.data["Material"];
+						update["repeating_spell-" + lvl + "_" + id + "_spellcomp_materials_display"] = page.data["Material"];
+
+						if (page.data["Material"] != null || page.data["Material"] != " " || page.data["Material"] != "")
+						{
+							update["repeating_spell-" + lvl + "_" + id + "_spell_material_label"] = "Materials: ";
+						}
 					};
 					if (page.data["Concentration"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spellconcentration"] = "{{concentration=1}}"
+						update["repeating_spell-" + lvl + "_" + id + "_spellconcentration"] = "{{concentration=1}}";
+						update["repeating_spell-" + lvl + "_" + id + "_spellconcentration_display"] = " Concentration,";
 					};
 					if (page.data["Duration"]) {
 						update["repeating_spell-" + lvl + "_" + id + "_spellduration"] = page.data["Duration"]
@@ -9262,14 +9976,48 @@
 						update["repeating_spell-" + lvl + "_" + id + "_spellhlbonus"] = page.data["Higher Spell Slot Bonus"]
 					};
 					if (page.data["Higher Spell Slot Desc"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spellathigherlevels"] = page.data["Higher Spell Slot Desc"]
+						update["repeating_spell-" + lvl + "_" + id + "_spellathigherlevels"] = page.data["Higher Spell Slot Desc"];
+						update["repeating_spell-" + lvl + "_" + id + "_spell_higher_level_label"] = "At Higher Levels: ";
+						update["repeating_spell-" + lvl + "_" + id + "_spellathigherlevels_display"] = page.data["Higher Spell Slot Desc"];
 					};
-					if (page.data["data-Cantrip Scaling"] && lvl == "cantrip") {
-						update["repeating_spell-" + lvl + "_" + id + "_spell_damage_progression"] = "Cantrip " + page.data["data-Cantrip Scaling"].charAt(0).toUpperCase() + page.data["data-Cantrip Scaling"].slice(1);
+					if (page.data["data-cantrip Scaling"] && lvl == "Cantrip") {
+						update["repeating_spell-" + lvl + "_" + id + "_spell_damage_progression"] = "Cantrip " + page.data["data-cantrip Scaling"].charAt(0).toUpperCase() + page.data["data-cantrip Scaling"].slice(1);
 					};
-					if (page.data["data-description"]) {
-						update["repeating_spell-" + lvl + "_" + id + "_spelldescription"] = page.data["data-description"]
+					if (page["content"] != null || page["content"] != "" || page["content"] != " ") {
+						var  descStr = "";
+
+						if (page["content"].charAt(0) == " ")
+						{
+							descStr = descStr.substring(1);
+						}
+						
+						if (page["content"].charAt(0) == '\n')
+						{
+							descStr = page["content"].substring(1);
+						}
+						else if ( page["content"].charAt(1) == '\n')
+						{
+							descStr = page["content"].substring(2);
+						}
+						else
+						{
+							descStr = page["content"];
+						}
+
+						descStr = descStr.replaceAll(" \n", "\n\n");
+						descStr = descStr.replaceAll('\t', "");
+						descStr = descStr.replaceAll('*', "");
+						
+						var higherLevelIndex = descStr.indexOf("At Higher Levels");
+
+						if (higherLevelIndex > 0)
+						{
+							descStr = descStr.substring(0, higherLevelIndex);
+						}
+
+						update["repeating_spell-" + lvl + "_" + id + "_spelldescription"] = descStr;
 					};
+
 					update["repeating_spell-" + lvl + "_" + id + "_options-flag"] = "0";
 				};
 				if (category === "Monsters") {
@@ -10281,7 +11029,7 @@
 					if (blob["Custom Spells"]) {
 						let spells = jsonparse(blob["Custom Spells"]);
 						_.each(spells, function(spell) {
-							var lvl = spell["Level"] && spell["Level"] > 0 ? spell["Level"] : "cantrip";
+							var lvl = spell["Level"] && spell["Level"] > 0 ? spell["Level"] : "Cantrip";
 							let id = generateRowID();
 							if (repeating["spell-" + lvl]) {
 								_.each(repeating["spell-" + lvl], function(spell, spellid) {
@@ -10307,7 +11055,7 @@
 								update["repeating_spell-" + lvl + "_" + id + "_spellritual"] = "{{ritual=1}}"
 							};
 							if (spell["School"]) {
-								update["repeating_spell-" + lvl + "_" + id + "_spellschool"] = spell["School"].toLowerCase()
+								update["repeating_spell-" + lvl + "_" + id + "_spellschool"] = spell["School"].charAt(0).toUpperCase() + spell["School"].substr(1).toLowerCase();
 							};
 							if (spell["Casting Time"]) {
 								update["repeating_spell-" + lvl + "_" + id + "_spellcastingtime"] = spell["Casting Time"]
@@ -10390,8 +11138,8 @@
 							if (spell["Higher Spell Slot Desc"]) {
 								update["repeating_spell-" + lvl + "_" + id + "_spellathigherlevels"] = spell["Higher Spell Slot Desc"]
 							};
-							if (spell["data-Cantrip Scaling"] && lvl == "cantrip") {
-								update["repeating_spell-" + lvl + "_" + id + "_spell_damage_progression"] = "Cantrip " + spell["data-Cantrip Scaling"].charAt(0).toUpperCase() + spell["data-Cantrip Scaling"].slice(1);
+							if (spell["data-cantrip Scaling"] && lvl == "Cantrip") {
+								update["repeating_spell-" + lvl + "_" + id + "_spell_damage_progression"] = "Cantrip " + spell["data-cantrip Scaling"].charAt(0).toUpperCase() + spell["data-cantrip Scaling"].slice(1);
 							};
 							if (spell["data-description"]) {
 								update["repeating_spell-" + lvl + "_" + id + "_spelldescription"] = spell["data-description"]
